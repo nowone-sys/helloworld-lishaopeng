@@ -1,0 +1,12 @@
+{
+  "name": "helloworld-lishaopeng",
+  "version": "1.0.0",
+  "description": "Hello World 网站 - 李少鹏",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
