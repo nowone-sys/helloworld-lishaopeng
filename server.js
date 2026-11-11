@@ -3,16 +3,6 @@ const app = express();
 
 // 根路由 - 显示 Hello World 页面
 app.get('/', (req, res) => {
-  const currentTime = new Date().toLocaleString('zh-CN', {
-    timeZone: 'Asia/Shanghai',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
-
   const html = `
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -81,11 +71,22 @@ app.get('/', (req, res) => {
     <h1>👋 Hello World！</h1>
     <p class="message">我是 <strong>李少鹏</strong>，<br>我的第一个 AI 开发的网站</p>
     <div class="time-box">
-      <span class="label">🕐 当前服务器时间</span>
-      <span class="time-value">${currentTime}</span>
+      <span class="label">🕐 当前时间（流动中）</span>
+      <span class="time-value" id="clock">加载中...</span>
     </div>
     <p class="footer">由 Node.js + Express 构建 · 低代码实践练习一</p>
   </div>
+  <script>
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var d = new Date();
+      var s = d.getFullYear() + '/' + pad(d.getMonth()+1) + '/' + pad(d.getDate())
+            + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      document.getElementById('clock').textContent = s;
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
 </body>
 </html>
   `;
